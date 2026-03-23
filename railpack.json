@@ -1,0 +1,9 @@
+{
+  "provider": "java",
+  "build": {
+    "cmd": "mvn clean package -DskipTests"
+  },
+  "start": {
+    "cmd": "java -jar target/praynow-0.0.1-SNAPSHOT.jar"
+  }
+}
