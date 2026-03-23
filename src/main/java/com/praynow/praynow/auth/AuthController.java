@@ -10,13 +10,13 @@ import java.util.Map;
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
-    
+
     private final JwtUtil jwtUtil;
 
-    @Value("${admin.username}")
+    @Value("${app.auth.username}")
     private String adminUsername;
 
-    @Value("${admin.password}")
+    @Value("${app.auth.password}")
     private String adminPassword;
 
     public AuthController(JwtUtil jwtUtil) {
