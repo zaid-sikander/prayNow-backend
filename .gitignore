@@ -35,4 +35,3 @@ build/
 ### Secrets ###
 application-local.properties
 application-prod.properties
-application.properties
