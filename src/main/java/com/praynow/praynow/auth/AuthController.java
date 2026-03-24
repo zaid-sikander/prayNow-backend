@@ -1,6 +1,10 @@
 package com.praynow.praynow.auth;
 
 import com.praynow.praynow.security.JwtUtil;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,10 +27,14 @@ public class AuthController {
         this.jwtUtil = jwtUtil;
     }
 
+    @Operation(summary = "Login to get JWT token")
+    @ApiResponse(responseCode = "200", description = "Login successful, returns JWT token")
+    @ApiResponse(responseCode = "401", description = "Invalid credentials")
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody Map<String, String> credentials) {
-        String username = credentials.get("username");
-        String password = credentials.get("password");
+    public ResponseEntity<?> login(@RequestBody LoginRequest credentials) {
+        String username = credentials.getUsername();
+        String password = credentials.getPassword();
+
 
         if (adminUsername.equals(username) && adminPassword.equals(password)) {
             String token = jwtUtil.generateToken(username);
