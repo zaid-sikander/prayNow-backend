@@ -30,6 +30,7 @@ import java.util.List;
 @Document(collection = "masjids")
 public class Masjid {
     @Id
+    @Schema(example = "MongoDB Id")
     private String id;
     @Schema(example = "icor")
     private String masjidId;
