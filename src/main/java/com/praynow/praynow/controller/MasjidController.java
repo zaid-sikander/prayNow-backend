@@ -8,6 +8,7 @@ import java.util.List;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
 
 @RestController
@@ -20,8 +21,9 @@ public class MasjidController {
     }
 
     @Operation(summary = "Add a Masjid Schedule")
-    @ApiResponse(responseCode = "200", description = "Schedule added success") 
+    @ApiResponse(responseCode = "200", description = "Schedule added success")
     @ApiResponse(responseCode = "403", description = "Missing or invalid JWT token")
+    @SecurityRequirement(name = "bearerAuth")
     @PostMapping
     public ResponseEntity<Masjid> create(@RequestBody Masjid masjid) {
         return ResponseEntity.ok(masjidService.save(masjid));
