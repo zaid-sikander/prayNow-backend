@@ -23,6 +23,12 @@ public class AuthController {
     @Value("${app.auth.password}")
     private String adminPassword;
 
+    @Value("${app.auth.username2}")
+    private String adminUsername2;
+
+    @Value("${app.auth.password2}")
+    private String adminPassword2;
+
     public AuthController(JwtUtil jwtUtil) {
         this.jwtUtil = jwtUtil;
     }
@@ -36,7 +42,8 @@ public class AuthController {
         String password = credentials.getPassword();
 
 
-        if (adminUsername.equals(username) && adminPassword.equals(password)) {
+        if ((adminUsername.equals(username) && adminPassword.equals(password)) ||
+            (adminUsername2.equals(username) && adminPassword2.equals(password))) {
             String token = jwtUtil.generateToken(username);
             return ResponseEntity.ok(Map.of("token", token));
         }
